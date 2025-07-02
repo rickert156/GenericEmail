@@ -18,7 +18,8 @@ def divide(count:int):
         number_doc+=1
         global_count+=1
         dir_name = f"{domains_dir}/base_{number_doc}"
-        if not os.path.exists(f"{domains_dir}/{dir_name}"):os.makedirs(f"{domains_dir}/{dir_name}")
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
         new_doc = doc.split('/')[1]
         shutil.move(doc, f"{dir_name}/{new_doc}")
         print(f"[{global_count}] {doc} -> {dir_name}/{new_doc}")
