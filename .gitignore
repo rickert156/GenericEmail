@@ -1,0 +1,12 @@
+__pycache__/
+/__pycache__/
+Processing/*.json
+Domains/*.json
+Domains/base*
+Result/*.csv
+Source/*
+Done/*.json
+module/mail_config.py
+ProfileChrome/*
+!Source/
+Dockerfile
