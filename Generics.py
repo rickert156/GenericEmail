@@ -70,7 +70,8 @@ def GetGeneric():
         print(f"{RED}\nExit...{RESET}")
         sys.exit()
     except:
-        shutil.move(doc, complite_json)
+        if os.path.exists(doc):
+            shutil.move(doc, complite_json)
 
 
 #######################################
