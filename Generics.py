@@ -233,6 +233,10 @@ def ParserPage(driver:str, data:dict, file_json:str):
                 location=location
                 )
 
+def run_command(command:str):
+    print(command)
+    subprocess.run(command, shell=True)
+
 while True:
     try:
         if len(os.listdir(domains_dir)) > 0:
@@ -243,3 +247,5 @@ while True:
             sys.exit()
     except Exception as err:
         print(f'{RED}MAIN BLOCK ERROR: {err}{RESET}')
+        cancel_python3 = "killall python3"
+        cancel_chromium = "killall chromium"
