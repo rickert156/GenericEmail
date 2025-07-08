@@ -51,12 +51,13 @@ def GetGeneric():
         
             site = data['site']
     
-            complite_json = doc.replace(domains_dir, done_dir)
             
             print(f"[{number_site}] {site}")
             try:
                 driver.get(site)
             
+                complite_json = doc.replace(domains_dir, done_dir)
+                
                 Scrolling(driver=driver) 
                 ParserPage(
                         driver=driver, 
@@ -66,7 +67,11 @@ def GetGeneric():
     
                 print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
             finally:  
-                shutil.move(doc, complite_json)
+                try:
+                    shutil.move(doc, complite_json)
+                except:
+                    os.remove(doc)
+                    print(f"{RED}Удален {doc} !{RESET}")
                 driver.quit()
 
     except KeyboardInterrupt:
