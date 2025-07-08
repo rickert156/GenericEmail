@@ -69,7 +69,6 @@ def GetGeneric():
                 """Перемещаем в Done/"""
             except Exception as err:
                 print(f"{RED}{err}{RESET}")
-                driver.quit()
 
             except KeyboardInterrupt:
                 print(f"{RED}\nExit...{RESET}")
@@ -78,6 +77,7 @@ def GetGeneric():
             finally:
                 print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
                 shutil.move(doc, complite_json)
+                driver.quit()
 
     except KeyboardInterrupt:
         print(f"{RED}\nExit...{RESET}")
@@ -85,8 +85,6 @@ def GetGeneric():
     except:
         if os.path.exists(doc):
             shutil.move(doc, complite_json)
-    finally:
-        driver.quit()
 
 
 #######################################
