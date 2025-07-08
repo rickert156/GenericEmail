@@ -41,43 +41,33 @@ def GetGeneric():
 
         number_site = 0
         for doc in list_json:
-            try:
                 
-                driver = driver_chrome()
+            driver = driver_chrome()
                 
-                number_site+=1
-                """Получаем данные из JSON"""
-                print(doc)
-                data = CurrentDataJson(path_file=doc)
+            number_site+=1
+            """Получаем данные из JSON"""
+            print(doc)
+            data = CurrentDataJson(path_file=doc)
         
-                site = data['site']
+            site = data['site']
     
-                complite_json = doc.replace(domains_dir, done_dir)
+            complite_json = doc.replace(domains_dir, done_dir)
             
-                print(f"[{number_site}] {site}")
-                driver.get(site)
+            print(f"[{number_site}] {site}")
+            driver.get(site)
             
-                Scrolling(driver=driver) 
-                ParserPage(
-                        driver=driver, 
-                        data=data, #Передаем словарь с инфой(что бы не вызывать повторно)
-                        file_json=doc #Передаем док
-                        )
+            Scrolling(driver=driver) 
+            ParserPage(
+                    driver=driver, 
+                    data=data, #Передаем словарь с инфой(что бы не вызывать повторно)
+                    file_json=doc #Передаем док
+                    )
     
-                driver.quit()
+            driver.quit()
         
-                """Перемещаем в Done/"""
-            except Exception as err:
-                print(f"{RED}{err}{RESET}")
-
-            except KeyboardInterrupt:
-                print(f"{RED}\nExit...{RESET}")
-                sys.exit()
-
-            finally:
-                print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
-                shutil.move(doc, complite_json)
-                driver.quit()
+            print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
+            shutil.move(doc, complite_json)
+            driver.quit()
 
     except KeyboardInterrupt:
         print(f"{RED}\nExit...{RESET}")
