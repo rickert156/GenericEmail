@@ -54,18 +54,20 @@ def GetGeneric():
             complite_json = doc.replace(domains_dir, done_dir)
             
             print(f"[{number_site}] {site}")
-            driver.get(site)
+            try:
+                driver.get(site)
             
-            Scrolling(driver=driver) 
-            ParserPage(
-                    driver=driver, 
-                    data=data, #Передаем словарь с инфой(что бы не вызывать повторно)
-                    file_json=doc #Передаем док
-                    )
+                Scrolling(driver=driver) 
+                ParserPage(
+                        driver=driver, 
+                        data=data, #Передаем словарь с инфой(что бы не вызывать повторно)
+                        file_json=doc #Передаем док
+                        )
     
-            print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
-            shutil.move(doc, complite_json)
-            driver.quit()
+                print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
+            finally:  
+                shutil.move(doc, complite_json)
+                driver.quit()
 
     except KeyboardInterrupt:
         print(f"{RED}\nExit...{RESET}")
