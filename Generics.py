@@ -63,8 +63,6 @@ def GetGeneric():
                     file_json=doc #Передаем док
                     )
     
-            driver.quit()
-        
             print(f"{BLUE}{doc} -> {complite_json}{RESET}\n{divide}\n")
             shutil.move(doc, complite_json)
             driver.quit()
