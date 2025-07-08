@@ -49,7 +49,7 @@ def RunContainers():
         number_container+=1
         container = f"trustPilot_{number_container}"
         if mode == all_mode[0]:
-            command = f"podman run -it -v $PWD/{target_dir}:{main_cont_dir} --name {container} generic &"
+            command = f"podman run -it -v $PWD/{target_dir}:{main_cont_dir} --name {container} getgeneric &"
             run_command(command=command)
         if mode == all_mode[1]:
             command = f"podman start {container} &"
